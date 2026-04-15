@@ -50,7 +50,13 @@ body{font-family:'Noto Sans JP',sans-serif;background:var(--bg);color:var(--text
 .meta-item svg{width:12px;height:12px;opacity:.5;flex-shrink:0;}
 .empty{text-align:center;padding:60px 20px;color:var(--muted);}
 .empty p{font-size:13px;margin-top:8px;}
-.updated{text-align:center;font-size:10px;color:var(--muted);padding:8px;letter-spacing:.05em;}
+.updated{text-align:center;font-size:10px;color:var(--muted);padding:12px;letter-spacing:.05em;}
+.loading{display:flex;flex-direction:column;align-items:center;gap:14px;padding:80px 20px;color:var(--muted);font-size:12px;}
+.dots{display:flex;gap:5px;}
+.dot{width:8px;height:8px;background:var(--accent);border-radius:50%;animation:pulse 1.2s ease infinite;}
+.dot:nth-child(2){animation-delay:.2s;}
+.dot:nth-child(3){animation-delay:.4s;}
+@keyframes pulse{0%,80%,100%{opacity:.3;transform:scale(.8);}40%{opacity:1;transform:scale(1);}}
 </style>
 </head>
 <body>
@@ -87,13 +93,17 @@ body{font-family:'Noto Sans JP',sans-serif;background:var(--bg);color:var(--text
   </div>
 </div>
 <div class="count-bar" id="count-bar"></div>
-<div class="grid" id="grid"></div>
+<div class="grid" id="grid">
+  <div class="loading">
+    <div class="dots"><div class="dot"></div><div class="dot"></div><div class="dot"></div></div>
+    <span>読み込み中...</span>
+  </div>
+</div>
 <div class="updated" id="updated-at"></div>
 
 <script>
-const ITEMS = [{"ankenName":"au特販案件","kinmuChi":"ヨドバシ上大岡","tankaPriceMin":14000,"tankaPriceMax":16000,"tankaPriceType":"日給","ankenType":"固定","industry":"通信","kaishi":"即日"},{"ankenName":"未経験可能案件","kinmuChi":"最寄り考慮で相談させて頂きます。","tankaPriceMin":275000,"tankaPriceMax":305000,"tankaPriceType":"月給","ankenType":"固定","industry":"通信","kaishi":"即日or5月〜"},{"ankenName":"au特販スポット案件","kinmuChi":"ヨドバシ秋葉原、ヨドバシ吉祥寺","tankaPriceMin":21000,"tankaPriceMax":21000,"tankaPriceType":"日給","ankenType":"スポット","industry":"通信","kaishi":"3/17(単日)"},{"ankenName":"au、UQ外販イベント","kinmuChi":"1都3県","tankaPriceMin":21000,"tankaPriceMax":23000,"tankaPriceType":"日給","ankenType":"スポット","industry":"通信","kaishi":"5月〜"},{"ankenName":"ドコモ首都圏案件 クローザー","kinmuChi":"量販店(イオン・アリオ等含むヨドバシ以外)","tankaPriceMin":400000,"tankaPriceMax":400000,"tankaPriceType":"月給","ankenType":"固定","industry":"通信","kaishi":"2026年5月〜"},{"ankenName":"ドコモ首都圏案件 ディレクター","kinmuChi":"量販店(イオン・アリオ等含むヨドバシ以外)","tankaPriceMin":420000,"tankaPriceMax":420000,"tankaPriceType":"月給","ankenType":"固定","industry":"通信","kaishi":"2026年5月〜"},{"ankenName":"某大手家電メーカー案件｜家電量販店③SR（サービスルート）","kinmuChi":"全国の家電量販店","tankaPriceMin":1600,"tankaPriceMax":1600,"tankaPriceType":"時給","ankenType":"固定","industry":"家電","kaishi":"4月より本格始動"},{"ankenName":"某大手家電メーカー案件｜家電量販店①SA（セールスアドバイザー）","kinmuChi":"全国の家電量販店","tankaPriceMin":2000,"tankaPriceMax":2000,"tankaPriceType":"時給","ankenType":"固定","industry":"家電","kaishi":"4月より本格始動"},{"ankenName":"某大手家電メーカー案件｜家電量販店②SP（セールスプロモーター）","kinmuChi":"全国の家電量販店","tankaPriceMin":1800,"tankaPriceMax":1800,"tankaPriceType":"時給","ankenType":"固定","industry":"家電","kaishi":"4月より本格始動"},{"ankenName":"au,UQラウンダー特販","kinmuChi":"埼玉量販店販路","tankaPriceMin":21000,"tankaPriceMax":23000,"tankaPriceType":"日給","ankenType":"固定","industry":"通信","kaishi":"5月〜"}];
-
-let filters={type:'',pay:'',industry:''};
+let allItems = [];
+let filters = {type:'', pay:'', industry:''};
 
 function fmtReward(min,max,type){
   const unit=type==='日給'?'円／日':type==='月給'?'円／月':'円／時';
@@ -111,7 +121,7 @@ const calIcon=`<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke
 function renderCards(){
   const grid=document.getElementById('grid');
   const countBar=document.getElementById('count-bar');
-  const filtered=ITEMS.filter(d=>{
+  const filtered=allItems.filter(d=>{
     if(filters.type&&d.ankenType!==filters.type)return false;
     if(filters.pay&&d.tankaPriceType!==filters.pay)return false;
     if(filters.industry&&d.industry!==filters.industry)return false;
@@ -156,8 +166,22 @@ function renderCards(){
   });
 });
 
-renderCards();
-document.getElementById('updated-at').textContent='最終更新: 2026-04-14';
+// 同一オリジン(anken.buddyon.net)からdata.jsonを取得 → CORSなし
+fetch('/data.json?t=' + Date.now())
+  .then(r => r.json())
+  .then(json => {
+    allItems = json.items || [];
+    renderCards();
+    if(json.updated){
+      const d = new Date(json.updated);
+      document.getElementById('updated-at').textContent =
+        '最終更新: ' + d.toLocaleString('ja-JP', {timeZone:'Asia/Tokyo'});
+    }
+  })
+  .catch(() => {
+    document.getElementById('grid').innerHTML =
+      '<div class="empty">⚠️ データを取得できませんでした</div>';
+  });
 </script>
 </body>
 </html>

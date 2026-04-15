@@ -1,0 +1,105 @@
+{
+  "updated": "2026-04-15T22:48:53Z",
+  "items": [
+    {
+      "ankenName": "au特販案件",
+      "kinmuChi": "ヨドバシ上大岡",
+      "tankaPriceMin": 14000,
+      "tankaPriceMax": 16000,
+      "tankaPriceType": "日給",
+      "ankenType": "固定",
+      "industry": "通信",
+      "kaishi": "即日"
+    },
+    {
+      "ankenName": "未経験可能案件",
+      "kinmuChi": "最寄り考慮で相談させて頂きます。",
+      "tankaPriceMin": 275000,
+      "tankaPriceMax": 305000,
+      "tankaPriceType": "月給",
+      "ankenType": "固定",
+      "industry": "通信",
+      "kaishi": "即日or5月〜"
+    },
+    {
+      "ankenName": "au特販スポット案件",
+      "kinmuChi": "ヨドバシ秋葉原、ヨドバシ吉祥寺",
+      "tankaPriceMin": 21000,
+      "tankaPriceMax": 21000,
+      "tankaPriceType": "日給",
+      "ankenType": "スポット",
+      "industry": "通信",
+      "kaishi": "3/17(単日)"
+    },
+    {
+      "ankenName": "au、UQ外販イベント",
+      "kinmuChi": "1都3県",
+      "tankaPriceMin": 21000,
+      "tankaPriceMax": 23000,
+      "tankaPriceType": "日給",
+      "ankenType": "スポット",
+      "industry": "通信",
+      "kaishi": "5月〜"
+    },
+    {
+      "ankenName": "ドコモ首都圏案件 クローザー",
+      "kinmuChi": "量販店(イオン・アリオ等含むヨドバシ以外)",
+      "tankaPriceMin": 400000,
+      "tankaPriceMax": 400000,
+      "tankaPriceType": "月給",
+      "ankenType": "固定",
+      "industry": "通信",
+      "kaishi": "2026年5月〜"
+    },
+    {
+      "ankenName": "ドコモ首都圏案件 ディレクター",
+      "kinmuChi": "量販店(イオン・アリオ等含むヨドバシ以外)",
+      "tankaPriceMin": 420000,
+      "tankaPriceMax": 420000,
+      "tankaPriceType": "月給",
+      "ankenType": "固定",
+      "industry": "通信",
+      "kaishi": "2026年5月〜"
+    },
+    {
+      "ankenName": "某大手家電メーカー案件｜家電量販店③SR（サービスルート）",
+      "kinmuChi": "全国の家電量販店",
+      "tankaPriceMin": 1600,
+      "tankaPriceMax": 1600,
+      "tankaPriceType": "時給",
+      "ankenType": "固定",
+      "industry": "家電",
+      "kaishi": "4月より本格始動"
+    },
+    {
+      "ankenName": "某大手家電メーカー案件｜家電量販店①SA（セールスアドバイザー）",
+      "kinmuChi": "全国の家電量販店",
+      "tankaPriceMin": 2000,
+      "tankaPriceMax": 2000,
+      "tankaPriceType": "時給",
+      "ankenType": "固定",
+      "industry": "家電",
+      "kaishi": "4月より本格始動"
+    },
+    {
+      "ankenName": "某大手家電メーカー案件｜家電量販店②SP（セールスプロモーター）",
+      "kinmuChi": "全国の家電量販店",
+      "tankaPriceMin": 1800,
+      "tankaPriceMax": 1800,
+      "tankaPriceType": "時給",
+      "ankenType": "固定",
+      "industry": "家電",
+      "kaishi": "4月より本格始動"
+    },
+    {
+      "ankenName": "au,UQラウンダー特販",
+      "kinmuChi": "埼玉量販店販路",
+      "tankaPriceMin": 21000,
+      "tankaPriceMax": 23000,
+      "tankaPriceType": "日給",
+      "ankenType": "固定",
+      "industry": "通信",
+      "kaishi": "5月〜"
+    }
+  ]
+}
