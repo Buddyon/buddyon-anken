@@ -1,0 +1,37 @@
+name: Sync Wix CMS to data.json
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: '*/15 * * * *'  # 15分ごと
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Fetch Wix CMS data
+        run: |
+          curl -s \
+            -X POST \
+            -H "Authorization: IST.eyJraWQiOiJQb3pIX2FDMiIsImFsZyI6IlJTMjU2In0.eyJkYXRhIjoie1wiaWRcIjpcIjg0YTI5OGZlLWVkOGQtNGViZi05ZGQwLTg4ZGEzNzBiYWE5ZVwiLFwiaWRlbnRpdHlcIjp7XCJ0eXBlXCI6XCJhcHBsaWNhdGlvblwiLCJpZCI6IjU1NGRkOTJmLTRmNDQtNDVhYy05YzJhLTVmNGFiYWJiMDRhYiJ9LCJ0ZW5hbnQiOnsidHlwZSI6ImFjY291bnQiLCJpZCI6IjcxMGQ2NzBjLTA4ZDMtNGZkNC05ODZkLTA3Y2E2YjFlMDQ4MyJ9fSIsImlhdCI6MTc3NjEyMDQ4M30.R88s9NhqtMh3giAaQgnfvEwOoy-v6vySECSSOL2rOptb7S1JbyKZ0sWnNjzxtxp75CFEAwrjpycBDCBaX8VnQ7dATmLTl8UKd1xyn3-KwnYnwZWKDAnfhEgnBbYPk3oM4SwENpFsgGPwANwpLXHLhp_1WPecsOOk8fRQDsxCkqYkMHhlZ0pKPL6GV1ymPSMnt0wBWkVLEDbLYawucMkF4Tdl9mHHglEVauGXHVR2Kc8bi3S-VwzKh0ypJfvcmulzFkHONqVjtQZECuXpK1gLTMfSzE87HasxQpTOL-KAk8j2JRfxrPPrv17-XITtyja-LpJwg5_fqyzy5LjN-bKVAw" \
+            -H "wix-site-id: 19c4a8ac-36ed-410f-94f1-978ab08b87b1" \
+            -H "Content-Type: application/json" \
+            -d '{"dataCollectionId":"AnkenList","query":{"paging":{"limit":100}}}' \
+            "https://www.wixapis.com/wix-data/v2/items/query" \
+            > data.json
+          echo "Fetched data.json:"
+          wc -c data.json
+
+      - name: Commit and push if changed
+        run: |
+          git config user.email "github-actions@buddyon.net"
+          git config user.name "GitHub Actions"
+          git add data.json
+          if git diff --cached --quiet; then
+            echo "No changes to commit"
+          else
+            git commit -m "Sync: Wix CMS data $(date -u +%Y-%m-%dT%H:%M:%SZ)"
+            git push
+          fi
