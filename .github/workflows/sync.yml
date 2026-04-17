@@ -3,13 +3,18 @@ name: Sync Wix CMS to data.json
 on:
   workflow_dispatch:
   schedule:
-    - cron: '*/15 * * * *'  # 15分ごと
+    - cron: '*/15 * * * *'
+
+permissions:
+  contents: write
 
 jobs:
   sync:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Fetch Wix CMS data
         run: |
@@ -21,8 +26,7 @@ jobs:
             -d '{"dataCollectionId":"AnkenList","query":{"paging":{"limit":100}}}' \
             "https://www.wixapis.com/wix-data/v2/items/query" \
             > data.json
-          echo "Fetched data.json:"
-          wc -c data.json
+          echo "Fetched $(wc -c < data.json) bytes"
 
       - name: Commit and push if changed
         run: |
@@ -30,8 +34,8 @@ jobs:
           git config user.name "GitHub Actions"
           git add data.json
           if git diff --cached --quiet; then
-            echo "No changes to commit"
+            echo "No changes"
           else
-            git commit -m "Sync: Wix CMS data $(date -u +%Y-%m-%dT%H:%M:%SZ)"
+            git commit -m "Sync: Wix CMS $(date -u +%Y-%m-%dT%H:%M:%SZ)"
             git push
           fi
