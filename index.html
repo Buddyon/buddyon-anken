@@ -57,6 +57,24 @@ body{font-family:'Noto Sans JP',sans-serif;background:var(--bg);color:var(--text
 .dot:nth-child(2){animation-delay:.2s;}
 .dot:nth-child(3){animation-delay:.4s;}
 @keyframes pulse{0%,80%,100%{opacity:.3;transform:scale(.8);}40%{opacity:1;transform:scale(1);}}
+
+.apply-btn{display:flex;align-items:center;justify-content:center;gap:6px;margin-top:14px;width:100%;padding:10px;border-radius:10px;background:var(--accent);color:#fff;font-size:13px;font-weight:700;border:none;cursor:pointer;transition:opacity .18s;letter-spacing:.04em;}
+.apply-btn:hover{opacity:.85;}
+.modal-overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,.65);z-index:1000;align-items:center;justify-content:center;padding:16px;}
+.modal-overlay.show{display:flex;}
+.modal{background:#1a1a28;border:1px solid var(--border);border-radius:20px;padding:24px;width:100%;max-width:480px;position:relative;animation:up .25s ease;}
+.modal h2{font-size:16px;font-weight:700;margin-bottom:4px;}
+.modal .anken-name{font-size:12px;color:var(--accent);margin-bottom:20px;}
+.modal label{display:block;font-size:11px;color:var(--muted);font-weight:600;letter-spacing:.06em;margin-bottom:5px;}
+.modal input,.modal textarea{width:100%;background:#0f0f1c;border:1px solid var(--border);border-radius:8px;padding:10px 12px;color:var(--text);font-size:13px;font-family:inherit;margin-bottom:14px;outline:none;transition:border-color .18s;}
+.modal input:focus,.modal textarea:focus{border-color:var(--accent-glow);}
+.modal textarea{height:90px;resize:none;}
+.modal-close{position:absolute;top:14px;right:16px;background:none;border:none;color:var(--muted);font-size:20px;cursor:pointer;line-height:1;}
+.modal-submit{width:100%;padding:12px;background:var(--accent);color:#fff;border:none;border-radius:10px;font-size:14px;font-weight:700;cursor:pointer;transition:opacity .18s;margin-top:4px;}
+.modal-submit:hover{opacity:.85;}
+.modal-submit:disabled{opacity:.5;cursor:not-allowed;}
+.success-msg{text-align:center;padding:20px 0;color:var(--green);}
+.success-msg p{font-size:13px;color:var(--sub);margin-top:8px;}
 </style>
 </head>
 <body>
@@ -151,6 +169,7 @@ function renderCards(){
     <div class="meta-item">${locIcon}<span>${d.kinmuChi||'要相談'}</span></div>
     <div class="meta-item">${calIcon}<span>${d.kaishi||'随時'}</span></div>
   </div>
+  <button class="apply-btn" onclick="openModal('${d.ankenName.replace(/'/g,"\\'")}')">📮 この案件に応募する</button>
 </div>`).join('');
 }
 
@@ -170,10 +189,16 @@ function renderCards(){
 fetch('/data.json?t=' + Date.now())
   .then(r => r.json())
   .then(json => {
-    allItems = json.items || [];
+    // Wix APIレスポンス形式（dataItems）とシンプル形式（items）の両方に対応
+    if(json.dataItems) {
+      allItems = json.dataItems.map(i => i.data).filter(Boolean);
+    } else {
+      allItems = json.items || [];
+    }
     renderCards();
-    if(json.updated){
-      const d = new Date(json.updated);
+    const updated = json.updated || json._updatedDate;
+    if(updated){
+      const d = new Date(updated);
       document.getElementById('updated-at').textContent =
         '最終更新: ' + d.toLocaleString('ja-JP', {timeZone:'Asia/Tokyo'});
     }
@@ -182,6 +207,83 @@ fetch('/data.json?t=' + Date.now())
     document.getElementById('grid').innerHTML =
       '<div class="empty">⚠️ データを取得できませんでした</div>';
   });
+
+const WEBHOOK_URL = 'https://hook.us2.make.com/ltg8hglv57s9iw556aqhrh9kl4r3th7v';
+
+function openModal(ankenName){
+  document.getElementById('modal-anken-name').textContent = ankenName;
+  document.getElementById('modal-overlay').dataset.anken = ankenName;
+  document.getElementById('modal-content').style.display='block';
+  document.getElementById('success-msg').style.display='none';
+  document.getElementById('input-name').value='';
+  document.getElementById('input-phone').value='';
+  document.getElementById('input-email').value='';
+  document.getElementById('input-pr').value='';
+  document.getElementById('submit-btn').disabled=false;
+  document.getElementById('modal-overlay').classList.add('show');
+  document.body.style.overflow='hidden';
+}
+
+function closeModal(){
+  document.getElementById('modal-overlay').classList.remove('show');
+  document.body.style.overflow='';
+}
+
+document.getElementById('modal-overlay').addEventListener('click', function(e){
+  if(e.target === this) closeModal();
+});
+
+async function submitOubo(){
+  const name = document.getElementById('input-name').value.trim();
+  const phone = document.getElementById('input-phone').value.trim();
+  const email = document.getElementById('input-email').value.trim();
+  const pr = document.getElementById('input-pr').value.trim();
+  const ankenName = document.getElementById('modal-overlay').dataset.anken;
+  if(!name){ alert('お名前を入力してください'); return; }
+  if(!phone){ alert('電話番号を入力してください'); return; }
+  const btn = document.getElementById('submit-btn');
+  btn.disabled = true;
+  btn.textContent = '送信中...';
+  try {
+    await fetch(WEBHOOK_URL, {
+      method: 'POST',
+      headers: {'Content-Type':'application/json'},
+      body: JSON.stringify({name, phone, email, pr, ankenName})
+    });
+    document.getElementById('modal-content').style.display='none';
+    document.getElementById('success-msg').style.display='block';
+    setTimeout(closeModal, 2500);
+  } catch(e) {
+    alert('送信に失敗しました。時間をおいてお試しください。');
+    btn.disabled = false;
+    btn.textContent = '応募を送信する';
+  }
+}
+
 </script>
+
+<div class="modal-overlay" id="modal-overlay">
+  <div class="modal">
+    <button class="modal-close" onclick="closeModal()">×</button>
+    <h2>📝 応募する</h2>
+    <p class="anken-name" id="modal-anken-name"></p>
+    <div id="modal-content">
+      <label>お名前 *</label>
+      <input type="text" id="input-name" placeholder="山田 太郎">
+      <label>電話番号 *</label>
+      <input type="tel" id="input-phone" placeholder="090-0000-0000">
+      <label>メールアドレス</label>
+      <input type="email" id="input-email" placeholder="example@email.com">
+      <label>自己PR・経験など</label>
+      <textarea id="input-pr" placeholder="これまでの経験や意気込みをご記入ください"></textarea>
+      <button class="modal-submit" id="submit-btn" onclick="submitOubo()">応募を送信する</button>
+    </div>
+    <div id="success-msg" class="success-msg" style="display:none">
+      <div style="font-size:36px">✅</div>
+      <p>応募を受け付けました！<br>担当者よりご連絡いたします。</p>
+    </div>
+  </div>
+</div>
+
 </body>
 </html>
