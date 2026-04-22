@@ -1,5 +1,5 @@
 {
-  "updated": "2026-04-20T12:54:49Z",
+  "updated": "2026-04-23T00:00:00Z",
   "items": [
     {
       "ankenName": "某大手家電メーカー案件｜①SA（セールスアドバイザー）",
@@ -7,9 +7,14 @@
       "tankaPriceMin": 2000,
       "tankaPriceMax": 2000,
       "tankaPriceType": "時給",
+      "tankaDisplay": "2,000円/時",
       "ankenType": "固定",
       "industry": "家電",
-      "kaishi": "4月より本格始動（長期案件）"
+      "kaishi": "4月より本格始動（長期案件）",
+      "kadoJikan": "10:00〜18:00",
+      "kadoNissu": "",
+      "skillYoken": "未経験OK、20代〜50代、家電量販店で勤務可能な身だしなみ、販売にチャレンジできるポテンシャルがある方歓迎",
+      "biko": "契約形態：業務委託契約 ※交通費別途支給 担当：10店舗前後 業務内容：土日を含む販売応援・担当店舗の販売サポート"
     },
     {
       "ankenName": "某大手家電メーカー案件｜③SR（サービスルート）",
@@ -17,9 +22,14 @@
       "tankaPriceMin": 1600,
       "tankaPriceMax": 1600,
       "tankaPriceType": "時給",
+      "tankaDisplay": "1,600円/時",
       "ankenType": "固定",
       "industry": "家電",
-      "kaishi": "4月より本格始動（長期案件）"
+      "kaishi": "4月より本格始動（長期案件）",
+      "kadoJikan": "10:00〜18:00",
+      "kadoNissu": "",
+      "skillYoken": "未経験OK、20代〜50代、家電量販店で勤務可能な身だしなみ、販売にチャレンジできるポテンシャルがある方歓迎",
+      "biko": "契約形態：業務委託契約 ※交通費別途支給 担当：複数店舗 業務内容：平日5日：機械メンテナンス、売場棚の陳列 土日祝休み"
     },
     {
       "ankenName": "ドコモ首都圏案件（クローザー）",
@@ -27,9 +37,14 @@
       "tankaPriceMin": 400000,
       "tankaPriceMax": 400000,
       "tankaPriceType": "月給",
+      "tankaDisplay": "400,000円/月",
       "ankenType": "固定",
       "industry": "通信",
-      "kaishi": "2026年5月〜"
+      "kaishi": "2026年5月〜",
+      "kadoJikan": "実働8時間／休憩1時間",
+      "kadoNissu": "週4日想定",
+      "skillYoken": "通信商材の販売経験者（特にドコモ）、顧客対応・現場連携において柔軟な対応が可能",
+      "biko": "業務：量販店のモバイル販促パッケージ業務 1ライン3名1組で稼働 交通費宿泊費別途支給(実費精算) 契約期間：2026年5月〜 5月はGWがあるため21日稼働想定"
     },
     {
       "ankenName": "ドコモ首都圏案件（ディレクター）",
@@ -37,9 +52,14 @@
       "tankaPriceMin": 420000,
       "tankaPriceMax": 420000,
       "tankaPriceType": "月給",
+      "tankaDisplay": "420,000円/月",
       "ankenType": "固定",
       "industry": "通信",
-      "kaishi": "2026年5月〜"
+      "kaishi": "2026年5月〜",
+      "kadoJikan": "実働8時間／休憩1時間",
+      "kadoNissu": "週4日想定",
+      "skillYoken": "通信商材の販売経験者、柔軟な対応が可能、活動報告資料の作成および現場ディレクションができる",
+      "biko": "業務：量販店のモバイル販促パッケージ業務 1ライン3名1組で稼働 交通費宿泊費別途支給(実費精算) 契約期間：2026年5月〜 四半期更新、長期継続想定"
     },
     {
       "ankenName": "未経験可能案件",
@@ -47,9 +67,14 @@
       "tankaPriceMin": 275000,
       "tankaPriceMax": 305000,
       "tankaPriceType": "月給",
+      "tankaDisplay": "275,000〜305,000円/月",
       "ankenType": "固定",
       "industry": "通信",
-      "kaishi": "即日or5月〜"
+      "kaishi": "即日or5月〜",
+      "kadoJikan": "",
+      "kadoNissu": "基本20日勤務",
+      "skillYoken": "一人称完結できる方(50件/月)※微経験での提案可、獲得意欲がある方、半年間以上勤務できる方",
+      "biko": "【キャリア】大手3大キャリア ※交通費込み ※実績と勤怠次第で単価変動有"
     },
     {
       "ankenName": "au特販案件",
@@ -57,9 +82,14 @@
       "tankaPriceMin": 14000,
       "tankaPriceMax": 16000,
       "tankaPriceType": "日給",
+      "tankaDisplay": "14,000〜16,000円/日",
       "ankenType": "固定",
       "industry": "通信",
-      "kaishi": "即日"
+      "kaishi": "即日",
+      "kadoJikan": "11:00〜20:00or10:00〜19:00",
+      "kadoNissu": "20日",
+      "skillYoken": "獲得ポテンシャルがある方(100件/月)",
+      "biko": "【キャリア】au,UQ ※交通費、残業代含む"
     }
   ]
 }

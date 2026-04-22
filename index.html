@@ -163,7 +163,7 @@ function renderCards(){
   </div>
   <div class="reward">
     <span class="reward-label">報酬</span>
-    <span class="reward-value">${fmtReward(d.tankaPriceMin,d.tankaPriceMax,d.tankaPriceType)}</span>
+    <span class="reward-value">${d.tankaDisplay||fmtReward(d.tankaPriceMin,d.tankaPriceMax,d.tankaPriceType)}</span>
   </div>
   <div class="meta">
     <div class="meta-item">${locIcon}<span>${d.kinmuChi||'要相談'}</span></div>
