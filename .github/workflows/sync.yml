@@ -10,7 +10,7 @@ permissions:
 
 jobs:
   sync:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-latesth
     steps:
       - uses: actions/checkout@v4
 
@@ -44,7 +44,7 @@ jobs:
             items: [.dataItems[].data | {
               ankenName, kinmuChi, tankaPriceMin, tankaPriceMax,
               tankaPriceType, tankaDisplay, ankenType, industry,
-              kaishi, kadoJikan, kadoNissu, skillYoken, biko, mentanFlow
+              kaishi, kadoJikan, kadoNissu, skillYoken, biko, mentanFlow, todofuken, kinmuKeitai, kodawari
             }]
           }' > data.json
 
