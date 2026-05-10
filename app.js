@@ -89,42 +89,47 @@ function renderUpdate() {
 // フィルタ判定ヘルパー
 // ============================================
 function getArea(item) {
-  const text = (item.kinmuChi || '') + ' ' + (item.ankenName || '');
-  if (/全国/.test(text)) return '全国';
-  if (/東京|品川|秋葉原|板橋|新宿|渋谷|池袋|上野|銀座|赤坂|六本木|虎ノ門|神田|有楽町/.test(text)) return '東京';
-  if (/神奈川|横浜|川崎|上大岡|町田|藤沢|湘南/.test(text)) return '神奈川';
-  if (/埼玉|川口|大宮|浦和|所沢|川越|越谷|東松山/.test(text)) return '埼玉';
-  if (/千葉|船橋|柏|松戸|市川|稲毛/.test(text)) return '千葉';
-  return 'その他';
+     if (Array.isArray(item.todofuken) && item.todofuken.length > 0) {
+            return item.todofuken;
+     }
+     const text = (item.kinmuChi || '') + ' ' + (item.ankenName || '');
+     if (/全国/.test(text)) return ['全国'];
+     if (/東京|品川|秋葉原|板橋|新宿|渋谷|池袋|上野|銀座|赤坂|六本木|虎ノ門|神田|有楽町/.test(text)) return ['東京'];
+     if (/神奈川|横浜|川崎|上大岡|町田|藤沢|湘南/.test(text)) return ['神奈川'];
+     if (/埼玉|川口|大宮|浦和|所沢|川越|越谷|東松山/.test(text)) return ['埼玉'];
+     if (/千葉|船橋|柏|松戸|市川|稲毛/.test(text)) return ['千葉'];
+     return ['その他'];
 }
-
 function isNewbieOK(item) {
-  const text = (item.skillYoken || '') + ' ' + (item.biko || '');
-  return /未経験(OK|歓迎|可|相談)|微経験/.test(text);
+     if (Array.isArray(item.kodawari) && item.kodawari.includes('未経験OK')) return true;
+     const text = (item.skillYoken || '') + ' ' + (item.biko || '');
+     return /未経験(OK|歓迎|可|相談)|微経験/.test(text);
 }
-
 function isHighRate(item) {
-  const min = Number(item.tankaPriceMin) || 0;
-  const t = item.tankaPriceType;
-  if (t === '時給' && min >= 2000) return true;
-  if (t === '日給' && min >= 20000) return true;
-  if (t === '月給' && min >= 350000) return true;
-  return false;
+     if (Array.isArray(item.kodawari) && item.kodawari.includes('高単価')) return true;
+     const min = Number(item.tankaPriceMin) || 0;
+     const t = item.tankaPriceType;
+     if (t === '時給' && min >= 2000) return true;
+     if (t === '日給' && min >= 20000) return true;
+     if (t === '月給' && min >= 350000) return true;
+     return false;
 }
-
 function isImmediate(item) {
-  return /即日|即\s*〜|即時|今すぐ/.test(item.kaishi || '');
+     if (Array.isArray(item.kodawari) && item.kodawari.includes('即日開始')) return true;
+     return /即日|即\s*〜|即時|今すぐ/.test(item.kaishi || '');
 }
-
 function matchWorkstyle(item, style) {
-  const days = item.kadoNissu || '';
-  const kaishi = item.kaishi || '';
-  if (style === 'single') return /単日|^[12]日間?$|単発/.test(days);
-  if (style === 'parttime') return /週[1-4]|2〜3日|3〜4日|3日|4日/.test(days);
-  if (style === 'long') return /長期|半年|継続/.test(days + ' ' + kaishi + ' ' + (item.biko || ''));
-  return true;
+     const map = { single: '単日OK', parttime: '週4以下', long: '長期' };
+     if (Array.isArray(item.kinmuKeitai) && item.kinmuKeitai.length > 0) {
+            return item.kinmuKeitai.includes(map[style]);
+     }
+     const days = item.kadoNissu || '';
+     const kaishi = item.kaishi || '';
+     if (style === 'single') return /単日|^[12]日間?$|単発/.test(days);
+     if (style === 'parttime') return /週[1-4]|2〜3日|3〜4日|3日|4日/.test(days);
+     if (style === 'long') return /長期|半年|継続/.test(days + ' ' + kaishi + ' ' + (item.biko || ''));
+     return true;
 }
-
 function matchKeyword(item, kw) {
   if (!kw) return true;
   const haystack = [
@@ -142,7 +147,7 @@ function applyFilters(items) {
     const f = state.filters;
     if (f.ankenType !== 'all' && item.ankenType !== f.ankenType) return false;
     if (f.tankaPriceType !== 'all' && item.tankaPriceType !== f.tankaPriceType) return false;
-    if (f.area !== 'all' && getArea(item) !== f.area) return false;
+            if (f.area !== 'all' && !getArea(item).includes(f.area)) return false;
     if (f.workstyle !== 'all' && !matchWorkstyle(item, f.workstyle)) return false;
     if (f.features.newbie && !isNewbieOK(item)) return false;
     if (f.features.highrate && !isHighRate(item)) return false;
@@ -531,3 +536,4 @@ function resetFilters() {
   render();
   document.getElementById('worktype').scrollIntoView({ behavior: 'smooth' });
 }
+h
