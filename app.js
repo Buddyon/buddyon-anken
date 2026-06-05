@@ -29,12 +29,22 @@ const state = {
 // ============================================
 // データ取得
 // ============================================
+
+// 期限切れ案件 自動非表示フィルタ
+// expireDate (YYYY-MM-DD) が今日より前の案件を除外。空文字は常時表示。
+function filterActive(items) {
+  // JST(日本時間)基準で今日の日付を算出（閲覧環境のTZに依存しない）
+  const jst = new Date(Date.now() + 9 * 3600 * 1000);
+  const today = jst.toISOString().slice(0, 10); // YYYY-MM-DD
+  return items.filter(i => !i.expireDate || i.expireDate >= today);
+}
+
 async function loadData() {
   try {
     const res = await fetch('data.json?t=' + Date.now());
     if (!res.ok) throw new Error('HTTP ' + res.status);
     const data = await res.json();
-    state.items = Array.isArray(data.items) ? data.items : [];
+    state.items = filterActive(Array.isArray(data.items) ? data.items : []);
     state.updated = data.updated || '';
     document.getElementById('loadingState').hidden = true;
     updateStats();
@@ -100,11 +110,13 @@ function getArea(item) {
      if (/千葉|船橋|柏|松戸|市川|稲毛/.test(text)) return ['千葉'];
      return ['その他'];
 }
+
 function isNewbieOK(item) {
      if (Array.isArray(item.kodawari) && item.kodawari.includes('未経験OK')) return true;
      const text = (item.skillYoken || '') + ' ' + (item.biko || '');
      return /未経験(OK|歓迎|可|相談)|微経験/.test(text);
 }
+
 function isHighRate(item) {
      if (Array.isArray(item.kodawari) && item.kodawari.includes('高単価')) return true;
      const min = Number(item.tankaPriceMin) || 0;
@@ -114,10 +126,12 @@ function isHighRate(item) {
      if (t === '月給' && min >= 350000) return true;
      return false;
 }
+
 function isImmediate(item) {
      if (Array.isArray(item.kodawari) && item.kodawari.includes('即日開始')) return true;
-     return /即日|即\s*〜|即時|今すぐ/.test(item.kaishi || '');
+     return /即日|即s*〜|即時|今すぐ/.test(item.kaishi || '');
 }
+
 function matchWorkstyle(item, style) {
      const map = { single: '単日OK', parttime: '週4以下', long: '長期' };
      if (Array.isArray(item.kinmuKeitai) && item.kinmuKeitai.length > 0) {
@@ -130,6 +144,7 @@ function matchWorkstyle(item, style) {
      if (style === 'long') return /長期|半年|継続/.test(days + ' ' + kaishi + ' ' + (item.biko || ''));
      return true;
 }
+
 function matchKeyword(item, kw) {
   if (!kw) return true;
   const haystack = [
@@ -164,16 +179,13 @@ function render() {
   const grid = document.getElementById('cardGrid');
   const empty = document.getElementById('emptyState');
   const filtered = applyFilters(state.items);
-
   document.getElementById('resultCount').textContent = filtered.length;
-
   if (filtered.length === 0) {
     grid.innerHTML = '';
     empty.hidden = false;
     return;
   }
   empty.hidden = true;
-
   grid.innerHTML = filtered.map((item, idx) => {
     return `
       <div class="card" data-index="${idx}" style="animation-delay: ${Math.min(idx * 40, 800)}ms">
@@ -199,7 +211,6 @@ function render() {
       </div>
     `;
   }).join('');
-
   grid.querySelectorAll('.card').forEach(card => {
     card.addEventListener('click', () => {
       const idx = Number(card.dataset.index);
@@ -223,7 +234,6 @@ function metaRow(label, text) {
 // ============================================
 function openDetail(item) {
   state.selected = item;
-
   const detailItems = [
     ['勤務地', item.kinmuChi],
     ['開始時期', item.kaishi],
@@ -233,7 +243,6 @@ function openDetail(item) {
     ['備考', item.biko],
     ['面談フロー', item.mentanFlow],
   ].filter(([, v]) => v && v.trim());
-
   const html = `
     <div class="detail-eyebrow">— DETAIL —</div>
     <div class="detail-header">
@@ -279,10 +288,8 @@ async function submitApply() {
   const phone = document.getElementById('fldPhone').value.trim();
   const email = document.getElementById('fldEmail').value.trim();
   const pr = document.getElementById('fldPR').value.trim();
-
   if (!name) { alert('お名前を入力してください'); return; }
   if (!phone) { alert('電話番号を入力してください'); return; }
-
   const payload = {
     ankenName: state.selected ? state.selected.ankenName : '',
     industry: state.selected ? state.selected.industry : '',
@@ -290,11 +297,9 @@ async function submitApply() {
     name, phone, email, pr,
     submittedAt: new Date().toISOString(),
   };
-
   const btn = document.getElementById('submitApplyBtn');
   btn.disabled = true;
   btn.textContent = '送信中...';
-
   try {
     if (APPLICATION_WEBHOOK_URL) {
       const res = await fetch(APPLICATION_WEBHOOK_URL, {
@@ -325,6 +330,7 @@ function showModal(id) {
   document.getElementById(id).hidden = false;
   document.body.style.overflow = 'hidden';
 }
+
 function hideModal(id) {
   document.getElementById(id).hidden = true;
   if (document.querySelectorAll('.modal:not([hidden])').length === 0) {
@@ -353,6 +359,7 @@ function escHtml(s) {
     .replace(/"/g, '&quot;')
     .replace(/'/g, '&#39;');
 }
+
 function escAttr(s) {
   if (s == null) return '';
   return String(s).replace(/[^a-zA-Z0-9ぁ-んァ-ヶ一-龯_-]/g, '');
@@ -536,4 +543,3 @@ function resetFilters() {
   render();
   document.getElementById('worktype').scrollIntoView({ behavior: 'smooth' });
 }
-h
