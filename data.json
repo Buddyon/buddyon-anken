@@ -1,6 +1,202 @@
 {
-  "updated": "2026-06-05T04:03:51Z",
+  "updated": "2026-06-05T22:09:18Z",
   "items": [
+    {
+      "ankenName": "au,UQラウンダー特販｜関東圏内 7月-",
+      "kinmuChi": "関東圏内 ※基本都内・神奈川・千葉・茨城エリア ※週毎に店舗が変わります ※場所により宿泊可",
+      "tankaPriceMin": 20000.0,
+      "tankaPriceMax": 23000.0,
+      "tankaPriceType": "日給",
+      "tankaDisplay": "20,000〜23,000円/日",
+      "ankenType": "固定",
+      "industry": "通信",
+      "kaishi": "7月〜",
+      "kadoJikan": "",
+      "kadoNissu": "20日",
+      "skillYoken": "一人称完結できる方(60〜80件/月)、キャッチ力ある方、獲得意欲・ヒューマンスキル高、自走可、勤怠良好、報連相・レス早、責任感、1年以上勤務可",
+      "biko": "※交通費・残業代含む ※実績と勤怠次第で単価変動 【キャリア】au,UQ",
+      "mentanFlow": "1回・弊社面談",
+      "todofuken": [
+        "東京",
+        "神奈川",
+        "千葉"
+      ],
+      "kinmuKeitai": [
+        "長期"
+      ],
+      "kodawari": [],
+      "expireDate": ""
+    },
+    {
+      "ankenName": "au,UQラウンダー特販｜埼玉ヤマダ・ケーズ 7月-",
+      "kinmuChi": "埼玉ヤマダ・ケーズ販路×1名 ※週毎に店舗が変わります",
+      "tankaPriceMin": 20000.0,
+      "tankaPriceMax": 23000.0,
+      "tankaPriceType": "日給",
+      "tankaDisplay": "20,000〜23,000円/日",
+      "ankenType": "固定",
+      "industry": "通信",
+      "kaishi": "7月〜",
+      "kadoJikan": "",
+      "kadoNissu": "16日〜",
+      "skillYoken": "一人称完結できる方(60〜80件/月)、家電コーナーで動ける方、獲得意欲・ヒューマンスキル高、自走可、勤怠良好、報連相・レス早、責任感、1年以上勤務可",
+      "biko": "※交通費・残業代含む ※実績と勤怠次第で単価変動 【キャリア】au,UQ ※希望日数要相談可",
+      "mentanFlow": "1回・弊社面談",
+      "todofuken": [
+        "埼玉"
+      ],
+      "kinmuKeitai": [
+        "長期"
+      ],
+      "kodawari": [],
+      "expireDate": ""
+    },
+    {
+      "ankenName": "SB特販｜ビックカメラ&ショップ販路 6月-",
+      "kinmuChi": "ビックカメラ＆ショップ販路 平日:SBショップ各店 週末:ビックカメラ各店 ※最寄り考慮の上アサイン",
+      "tankaPriceMin": 19000.0,
+      "tankaPriceMax": 23000.0,
+      "tankaPriceType": "日給",
+      "tankaDisplay": "19,000〜23,000円/日",
+      "ankenType": "固定",
+      "industry": "通信",
+      "kaishi": "6月〜",
+      "kadoJikan": "10:00〜19:00 or 11:00〜20:00",
+      "kadoNissu": "20日",
+      "skillYoken": "一人称完結できる方(60〜80件/月)、獲得意欲・ヒューマンスキル高、自走可、勤怠良好、報連相・レス早、責任感、1年以上勤務可",
+      "biko": "出向・転籍案件 ※交通費・残業代含む ※実績と勤怠次第で単価変動 【キャリア】SB,YM ※稼働開始日相談可",
+      "mentanFlow": "2回・弊社面談・代理店対面面談",
+      "todofuken": [],
+      "kinmuKeitai": [
+        "長期"
+      ],
+      "kodawari": [],
+      "expireDate": ""
+    },
+    {
+      "ankenName": "au特販スポット｜ジョーシン金町 6/13-14",
+      "kinmuChi": "ジョーシン金町",
+      "tankaPriceMin": 21000.0,
+      "tankaPriceMax": 23000.0,
+      "tankaPriceType": "日給",
+      "tankaDisplay": "21,000〜23,000円/日",
+      "ankenType": "スポット",
+      "industry": "通信",
+      "kaishi": "6/13・14",
+      "kadoJikan": "",
+      "kadoNissu": "2日間",
+      "skillYoken": "クローザー：一人称完結でき、キャッチを積極的に行え獲得手法が多様な方。キャッチャー：明るく元気よく活気出しができ着座まで出来る方",
+      "biko": "面談1回(オンライン) 都内エリア キャッチャー単価:18,000〜20,000/日 募集3名",
+      "mentanFlow": "1回・オンライン面談",
+      "todofuken": [
+        "東京"
+      ],
+      "kinmuKeitai": [
+        "単日OK"
+      ],
+      "kodawari": [
+        "高単価"
+      ],
+      "expireDate": "2026-06-14"
+    },
+    {
+      "ankenName": "au特販スポット｜ヨドバシ新宿西口 6/13-14",
+      "kinmuChi": "ヨドバシ新宿西口",
+      "tankaPriceMin": 21000.0,
+      "tankaPriceMax": 23000.0,
+      "tankaPriceType": "日給",
+      "tankaDisplay": "21,000〜23,000円/日",
+      "ankenType": "スポット",
+      "industry": "通信",
+      "kaishi": "6/13・14",
+      "kadoJikan": "",
+      "kadoNissu": "2日間",
+      "skillYoken": "クローザー：一人称完結でき、キャッチを積極的に行え獲得手法が多様な方。キャッチャー：明るく元気よく活気出しができ着座まで出来る方",
+      "biko": "面談1回(オンライン) 都内エリア ※家電刺さり込できる方優先 キャッチャー単価:18,000〜20,000/日",
+      "mentanFlow": "1回・オンライン面談",
+      "todofuken": [
+        "東京"
+      ],
+      "kinmuKeitai": [
+        "単日OK"
+      ],
+      "kodawari": [
+        "高単価"
+      ],
+      "expireDate": "2026-06-14"
+    },
+    {
+      "ankenName": "au特販スポット｜イオン品川 6/13-14",
+      "kinmuChi": "イオン品川",
+      "tankaPriceMin": 14000.0,
+      "tankaPriceMax": 16000.0,
+      "tankaPriceType": "日給",
+      "tankaDisplay": "14,000〜16,000円/日",
+      "ankenType": "スポット",
+      "industry": "通信",
+      "kaishi": "6/13・14",
+      "kadoJikan": "",
+      "kadoNissu": "2日間",
+      "skillYoken": "クローザー：一人称完結でき、キャッチを積極的に行え獲得手法が多様な方。キャッチャー：明るく元気よく活気出しができ着座まで出来る方",
+      "biko": "面談1回(オンライン) 都内エリア クローザー単価:25,000〜27,000円/日",
+      "mentanFlow": "1回・オンライン面談",
+      "todofuken": [
+        "東京"
+      ],
+      "kinmuKeitai": [
+        "単日OK"
+      ],
+      "kodawari": [],
+      "expireDate": "2026-06-14"
+    },
+    {
+      "ankenName": "au特販スポット｜ヨドバシ宇都宮 6/13-14",
+      "kinmuChi": "ヨドバシ宇都宮",
+      "tankaPriceMin": 21000.0,
+      "tankaPriceMax": 23000.0,
+      "tankaPriceType": "日給",
+      "tankaDisplay": "21,000〜23,000円/日",
+      "ankenType": "スポット",
+      "industry": "通信",
+      "kaishi": "6/13・14",
+      "kadoJikan": "",
+      "kadoNissu": "2日間",
+      "skillYoken": "クローザー：一人称完結でき、キャッチを積極的に行え獲得手法が多様な方。キャッチャー：明るく元気よく活気出しができ着座まで出来る方",
+      "biko": "面談1回(オンライン) 北関東・新潟エリア ※交通費・宿泊費別 キャッチャー単価:18,000〜20,000/日",
+      "mentanFlow": "1回・オンライン面談",
+      "todofuken": [],
+      "kinmuKeitai": [
+        "単日OK"
+      ],
+      "kodawari": [
+        "高単価"
+      ],
+      "expireDate": "2026-06-14"
+    },
+    {
+      "ankenName": "au特販スポット｜コジマ新潟 6/13-14",
+      "kinmuChi": "コジマ新潟",
+      "tankaPriceMin": 21000.0,
+      "tankaPriceMax": 23000.0,
+      "tankaPriceType": "日給",
+      "tankaDisplay": "21,000〜23,000円/日",
+      "ankenType": "スポット",
+      "industry": "通信",
+      "kaishi": "6/13・14",
+      "kadoJikan": "",
+      "kadoNissu": "2日間",
+      "skillYoken": "クローザー：一人称完結でき、キャッチを積極的に行え獲得手法が多様な方。キャッチャー：明るく元気よく活気出しができ着座まで出来る方",
+      "biko": "面談1回(オンライン) 北関東・新潟エリア ※交通費・宿泊費別 キャッチャー単価:18,000〜20,000/日",
+      "mentanFlow": "1回・オンライン面談",
+      "todofuken": [],
+      "kinmuKeitai": [
+        "単日OK"
+      ],
+      "kodawari": [
+        "高単価"
+      ],
+      "expireDate": "2026-06-14"
+    },
     {
       "ankenName": "ANV特販｜ヨドバシ池袋&イベント 6月-7月",
       "kinmuChi": "ヨドバシカメラ販路 平日:ヨドバシ池袋店 週末:イベント店\n候補:さいたま新都心、新宿、横浜、川崎、上大岡、町田、千葉、秋葉原、錦糸町、甲府、池袋",
