@@ -1,6 +1,73 @@
 {
-  "updated": "2026-06-23T22:07:01Z",
+  "updated": "2026-06-24T22:07:40Z",
   "items": [
+    {
+      "ankenName": "au特販案件",
+      "kinmuChi": "ヨドバシ秋葉原",
+      "tankaPriceMin": 14000.0,
+      "tankaPriceMax": 16000.0,
+      "tankaPriceType": "日給",
+      "tankaDisplay": null,
+      "ankenType": "固定",
+      "industry": null,
+      "kaishi": "7月〜",
+      "kadoJikan": null,
+      "kadoNissu": "19〜23日",
+      "skillYoken": "未経験不可。獲得意欲・ヒューマンスキルが高く、自走力・勤怠安定・報連相・レスの速さ・責任感があり、1年以上勤務できる方。",
+      "biko": null,
+      "mentanFlow": null,
+      "todofuken": [
+        "東京"
+      ],
+      "kinmuKeitai": null,
+      "kodawari": null,
+      "expireDate": null
+    },
+    {
+      "ankenName": "au特販スポット案件（北関東・都内・埼玉）",
+      "kinmuChi": "ヨドバシ宇都宮、ヨドバシ新潟、コジマ八王子高倉、イオン板橋、ヤマダイオン川口",
+      "tankaPriceMin": 21000.0,
+      "tankaPriceMax": 23000.0,
+      "tankaPriceType": "日給",
+      "tankaDisplay": null,
+      "ankenType": "スポット",
+      "industry": null,
+      "kaishi": "6/27,28・6/28",
+      "kadoJikan": null,
+      "kadoNissu": "2日間・単日",
+      "skillYoken": "クローザー：一人称完結でき、キャッチを積極的に行え獲得手法が多様な方",
+      "biko": null,
+      "mentanFlow": null,
+      "todofuken": [
+        "東京",
+        "埼玉"
+      ],
+      "kinmuKeitai": null,
+      "kodawari": null,
+      "expireDate": "2026-06-28"
+    },
+    {
+      "ankenName": "AU.UQ特販スポット案件（ヨドバシ池袋）",
+      "kinmuChi": "ヨドバシ池袋",
+      "tankaPriceMin": 20000.0,
+      "tankaPriceMax": 22000.0,
+      "tankaPriceType": "日給",
+      "tankaDisplay": null,
+      "ankenType": "スポット",
+      "industry": null,
+      "kaishi": "6/23〜28",
+      "kadoJikan": null,
+      "kadoNissu": "6日間",
+      "skillYoken": "一人称完結でき、キャッチを積極的に行え、獲得手法が多様な方",
+      "biko": null,
+      "mentanFlow": null,
+      "todofuken": [
+        "東京"
+      ],
+      "kinmuKeitai": null,
+      "kodawari": null,
+      "expireDate": "2026-06-28"
+    },
     {
       "ankenName": "au,UQラウンダー特販｜関東圏内 7月-",
       "kinmuChi": "関東圏内 ※基本都内・神奈川・千葉・茨城エリア ※週毎に店舗が変わります ※場所により宿泊可",
